@@ -20,7 +20,7 @@ public class ControllaStringa{
 		}
 		else{
 			/*altrimenti :*/
-			if(i<=lunghezza && j<=lunghezzaN ){
+			if(i<lunghezza && j<lunghezzaN ){
 				/* fin quando la i (0)non raggiunge
 				la sua lunghezza massima
 				e j non raggiunge la sua lunghezza massima allora :*/
