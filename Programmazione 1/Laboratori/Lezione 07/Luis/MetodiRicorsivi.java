@@ -176,21 +176,24 @@ public class MetodiRicorsivi{
     }
 	public static void permutazioniStringa(String stringa){
 		int i = 0; //gestire le righe della combinatoria
-		String aux ="";
+		String aux ="";//aux è lo scambio di valori
 		formatoTabella(i,stringa,aux);//crea il formato della tabella
 	}
 	public static void formatoTabella(int i,String stringa, String aux){
 		int lunghezza =stringa.length();
 		if(i>=lunghezza && lunghezza >0){
+			/*Se la i è maggiore della lunghezza massima ed è maggiore di 0 */
 			return;
 		}
 		else if(lunghezza==0){
-			System.out.println(aux);
+			/*condizione base se la lunghezza è 0 allora: */
+			System.out.println(aux);//la singola sequenza di stringa
 		}
 		else{
-			String stringaPrecedente = eliminaCarattere(stringa,i);
-			formatoTabella(0,stringaPrecedente,aux+stringa.charAt(i));
-			formatoTabella(i+1,stringa,aux);
+			/*altrimenti */
+			String stringaPrecedente = eliminaCarattere(stringa,i);//cancelli il carattere corrente
+			formatoTabella(0,stringaPrecedente,aux+stringa.charAt(i));//concatenazione di stringa
+			formatoTabella(i+1,stringa,aux);//vai alla riga successvia
 		}
 	}
 }
