@@ -1,6 +1,5 @@
 import java.util.Scanner;
 public class MetodiRicorsivi{
-	/*ATTENZIONE ESERCIZIO 6 NON FINITO */
 	public static void main(String [] args){
 		Scanner input = new Scanner(System.in);
 		System.out.println("Inserisci la stringa: ");
@@ -157,28 +156,17 @@ public class MetodiRicorsivi{
 		}
 		return"";
 	}
-	public static String eliminaCarattere(String stringa, int posizione, int i){
-		/*creazione della funzione eliminaCarattere con parametri :
-		la stringa inserita (stringa) la posizione che dobbiamo eliminare la parola(posizione) e l'incremento(i)*/
-		if(stringa ==""){
-			/*se la stringa è vuota allora:*/
-			return "Errore";
-		}
-		if(i<=stringa.length()-1){
-			/*se non la i non raggiunge la sua lunghezza massima:*/
-			if(i==posizione){
-				/*confronta se i uguale alla posizione :*/
-				System.out.print("");//crei una stringa vuota per eliminare il carattere
-				return eliminaCarattere(stringa,posizione,i+1);//vai alla lettera successiva
-			}
-			else{
-				/*altrimenti :*/
-				System.out.print(stringa.charAt(i));//Stampa le lettere rimanenti
-				return eliminaCarattere(stringa,posizione,i+1);//incrementa di uno la posizione
-			}
-			
-		}
-		return "\t Elemento eliminato : "+ posizione;
+	public static String eliminaCarattere(String s, int pos) {
+		return eliminaCarattere(s, pos, 0);
+	}
+	public static String eliminaCarattere(String s, int pos, int i) {
+		if (i == s.length())
+			return "";
+
+		if (i == pos)
+			return eliminaCarattere(s, pos, i + 1);
+		else
+			return s.charAt(i) + eliminaCarattere(s, pos, i + 1);
 	}
 	public static void separa(){
         final int NUM_TRATTINI = 40;
@@ -186,59 +174,23 @@ public class MetodiRicorsivi{
             System.out.print('-');
         System.out.println();
     }
-	public static String permutazioniStringa(String stringa){
+	public static void permutazioniStringa(String stringa){
 		int i = 0; //gestire le righe della combinatoria
-		int j = 0;//gestire le colonne della combinatoria
-		int lunghezza =stringa.length();//lunghezza massima della stringa inserita
-		if(stringa.equals("")){
-			/*se la stringa è vuota allora:*/
-			return "Errore";//ritorna errore
-		}
-		/*altrimenti*/
-		return formatoTabella(lunghezza,i,j,stringa);//crea il formato della tabella
+		String aux ="";
+		formatoTabella(i,stringa,aux);//crea il formato della tabella
 	}
-	public static String formatoTabella(int lunghezza,int i,int j,String stringa){
-		/*funzione chiamata formato tabella per creare la dimensione totale della combinatoria:
-		con parametri della lunghezza massima delle righe e delle colonne*/
-		int dimensione = dimensioniTabella(lunghezza);
-		/*Dato che la tabella si deve creare attraverso una operazione di fattoriale allora creo
-		una funzione per le righe della tabella portando a parametro la lunghezza totale della stringa inserita*/
-		if(dimensione<=1 &&lunghezza <=1){
-			return"Errore";
+	public static void formatoTabella(int i,String stringa, String aux){
+		int lunghezza =stringa.length();
+		if(i>=lunghezza && lunghezza >0){
+			return;
 		}
-		if(i<dimensione){
-			if(j==lunghezza-1){
-				permutazione(j,i,stringa,lunghezza);
-				//System.out.print("*");
-				System.out.println();
-				return formatoTabella(lunghezza,i+1,0,stringa);
-			}
-			else{
-				permutazione(j,i,stringa,lunghezza);
-				//System.out.print("*");
-				return formatoTabella(lunghezza,i,j+1,stringa);
-			}
-		}
-		return"";
-	}
-	public static int dimensioniTabella(int lunghezza){
-		/*creazione della funzione dimensionitabella con parametro la lunghezza massima della tabella(lunghezza)*/
-		if(lunghezza<=1){
-			/*se la lughezza è minore o uguale a 1 allora:*/
-			return 1;//ritorna 1
+		else if(lunghezza==0){
+			System.out.println(aux);
 		}
 		else{
-			/*altrimenti:*/
-			return lunghezza*dimensioniTabella(lunghezza-1);//fai il calcolo del fattoriale
-		}
-	}
-	public static void permutazione(int j,int i,String carattere,int lunghezza){
-		int sequenza = dimensioniTabella(lunghezza);
-		int lettera = sequenza/lunghezza;
-		int aux  = 0;
-		String parola = carattere.substring(j);
-		if(i<=lettera){
-			System.out.print(parola+" ");
+			String stringaPrecedente = eliminaCarattere(stringa,i);
+			formatoTabella(0,stringaPrecedente,aux+stringa.charAt(i));
+			formatoTabella(i+1,stringa,aux);
 		}
 	}
 }

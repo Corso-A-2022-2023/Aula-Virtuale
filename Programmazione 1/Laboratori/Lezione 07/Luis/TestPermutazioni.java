@@ -7,13 +7,11 @@ public class TestPermutazioni{
 		String stringa = input.nextLine();
 		System.out.println("Inserisci la posizione : ");
 		int posizione = input.nextInt();
-		int i =0;
-		System.out.println(MetodiRicorsivi.eliminaCarattere(stringa,posizione,i));
+		System.out.println(MetodiRicorsivi.eliminaCarattere(stringa,posizione));
 		MetodiRicorsivi.separa();
 		System.out.println();
 		System.out.println("Inserisci la stringa da permutare :");
 		String stringa1 = input1.nextLine();
-		int j = 0;
-		System.out.println(MetodiRicorsivi.permutazioniStringa(stringa1));
+		MetodiRicorsivi.permutazioniStringa(stringa1);
 	}
 }
