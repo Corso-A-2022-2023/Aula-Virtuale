@@ -3,13 +3,15 @@ public class MetodiSuArray{
 		/*funzione di tipo array dove ritorna un array di interi*/
 		System.out.println("Insersci la dimensione dell'array");
 		int dimensione = SIn.readInt();//Inserisco la dimensione dell'array
-		int[] array = new int [dimensione];
+		int[] array ;
 		//dichiaro che creo un array con dimensione inserita
 		if(dimensione <0){
 			/*se la dimensione dell'array non esiste allora:*/
-			return null;//ritorni null
+			array = new int [0];
+			return array;//ritorni null
 		}
 		else{
+			array= new int [dimensione];
 			for(int i = 0; i< array.length;i++){
 				/*col ciclo for generi l'array*/
 				System.out.println("Inserisci il valore dell' elemento "+i);
@@ -219,11 +221,45 @@ public class MetodiSuArray{
 		}
 		return verifica;//ritorna verifica
 	}
-	public static int indiceSubSeq(int[] a, int[] b, boolean verifica){
-		for(int i = 0; i<a.length; i++){
-			for(int j = 0; j<b.length; j++){
-				
+	public static int indiceSubSeqRic(int[] a, int[] b,int i,int j,int verifica){
+		/*metodo ricorsivo*/
+		if(a==null || b == null){
+			/*se l'array a e b sono vuoti*/
+			return -1;//return -1
+		}
+		else{
+			/*altrimenti*/
+			if(i<a.length && j<b.length){
+				/*se la i e j non raggiungono la lunghezza massima dell'array allora*/
+				if(a[i] == b[j]){
+					/*se l'elemento a è uguale a quello di b allora:*/
+					verifica = i-j;//differenza tra le due colonne
+					return indiceSubSeqRic(a,b,i+1,j+1,verifica);//incrementi di 1 all'elemento successivo
+				}
+				else{
+					/*altrimenti*/
+					verifica= -1;//verifica è -1
+					return indiceSubSeqRic(a,b,i+1,0,verifica);//torna dall'inizio sull'array b e vai all'elemento successivo dell'array a
+				}
 			}
 		}
+		return verifica;//ritorna verifica
+	}
+	public static int indiceSubSeq(int [] a, int [] b){
+		/*Metodo iterativo*/
+		int j =0;//indice l'array b
+		for(int i = 0; i < a.length;i++){
+			if(j==b.length){
+				/*se trovo una sequenza allora :*/
+				return i-j;//ritoni la differenza tra l'indice di a - b
+			}
+			if(a[i]==b[j]){
+				j++;//se trova un elemento uguale allora conta di 1
+			}
+			else{
+				j=0;//torno all'elemento iniziale di b
+			}
+		}
+		return -1;//ritorna -1
 	}
 }
