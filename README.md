@@ -1,4 +1,4 @@
-# Corso-A-2022-2023
+# Repositery di Luis Barrios
 ## Benvenuti nel Corso A a.a 2022-2023
 
 Questo è uno spazio pubblico in cui tutti possiamo pubblicare e consultare il materiale personale di tutti, come appunti, programmi etc.
