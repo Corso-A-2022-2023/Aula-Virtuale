@@ -30,6 +30,20 @@ public class EserciziMatrici{
 		System.out.println("Esercizio 4");
 		int[][] m5 = { {1, 5, 10, 7}, {3, 12, 21, 30}, {5, 10, 20, 30} }; // true
 		int[][] m6 = { {4, 7, 2, 5}, {7, 9, 20, 12}, {5, 8, 11, 21} }; // false
+		System.out.println(domMat(m5));
+		System.out.println(domMat(m6));
+		System.out.println();
+		System.out.println("Esercizio 5:");
+		System.out.println(toString(incrementa(m1)));
+		//System.out.println(toString(incrementa(m2)));
+		//System.out.println(toString(incrementa(m3)));
+		System.out.println(toString(incrementa(m4)));
+		System.out.println(toString(incrementa(m5)));
+		System.out.println(toString(incrementa(m6)));
+		System.out.println();
+		System.out.println("Esercizio 6");
+		int[] a4 = { 3, 5, 3, 2, 3, 6, 3, 2, 3, 3, 8, 3};
+		System.out.println(conteggio(a4,2));
 	}
 	public static int [][]  initAlt(int[] matp, int[] matd, int numr) {
 		int [][] matClone;
@@ -175,5 +189,75 @@ public class EserciziMatrici{
 			}
 		}
 	}
-
+	public static boolean domMat(int [][] mat){
+		boolean flag1= true;
+		for (int i = 0; i< mat.length && flag1; i++){
+			boolean flag2= false;
+			for(int j = 0; j < mat[i].length && !flag2; j++){
+				flag2 = domRiga(mat[i],mat[i][j]);
+			}
+			flag1 = flag2;
+		}
+		return flag1;
+	}
+	public static boolean domRiga(int[] array , int j){
+		boolean flag = true;
+		for(int i = 0; i< array.length && flag; i++){
+			if(array[i] % j == 0){
+				flag = true;
+			}
+			else{
+				flag = false;
+			}
+		}
+		return flag;
+	}
+	public static int[][] incrementa(int[][] imat){
+		int i = 0;
+		if(imat == null){
+			return null;
+		}
+		int [][] omat= new int[imat.length][];
+		incrementaRic(imat,omat,i);
+		return omat;
+	}
+	public static void incrementaRic(int[][] imat,int[][] omat, int i){
+		if(imat == null){
+			return;
+		}
+		else{
+			if(i < imat.length){
+				omat[i] = new int[imat[i].length];
+				incrementaRiga(imat[i],omat[i],imat[i].length-1);
+				incrementaRic(imat,omat,i+1);
+			}
+		}
+	}
+	public static void incrementaRiga(int[] in, int[] out, int k){
+		if(k<0){
+			return;
+		}
+		out[k] = in[k]+1;
+		incrementaRiga(in,out,k-1);
+	}
+	public static int conteggio(int[] a, int k){
+		if(a == null){
+			return 0;
+		}
+		return conteggioDicotomico(0,a.length-1,a,k);
+	}
+	public static int conteggioDicotomico(int start , int end , int[] a , int k){
+		int count =0;
+		if(start == end){
+			if(a[start] == k){
+				count++;
+			}
+		}
+		else{
+			int divisore = (start + end)/2;
+			count += conteggioDicotomico(start,divisore,a,k);
+			count += conteggioDicotomico(divisore+1,end,a,k);
+		}
+		return count;
+	}
 }
