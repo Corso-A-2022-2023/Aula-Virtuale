@@ -64,7 +64,7 @@ public class TestNodeUtil{
 								new Node<Integer>(3,null))))))));
 		Node<Node<Integer>> listOfList = new Node<Node<Integer>>(list3,new Node<Node<Integer>>(list2,
 				new Node<Node<Integer>>(list1,null)));
-		NodeUtil.printList(NodeUtil.cardinalita(listOfList));
+		NodeUtil.printList(NodeUtil.cardinality(listOfList));
 
 	}
 }

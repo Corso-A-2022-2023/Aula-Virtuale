@@ -43,7 +43,7 @@ public class NodeUtil<T>{
 		}
 		System.out.print("]");
 	}
-	public static <T> Node<Integer> cardinalita(Node<Node<T>> listOfList){
+	public static <T> Node<Integer> cardinality(Node<Node<T>> listOfList){
 		Node<Integer> nElementi = null;
 		for(Node<Node<T>> aux = listOfList; aux!=null; aux= aux.getNext()){
 			nElementi = new Node<Integer>(size(aux.getElem()),nElementi);
