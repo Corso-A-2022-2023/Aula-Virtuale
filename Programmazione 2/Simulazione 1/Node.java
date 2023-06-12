@@ -102,9 +102,9 @@ class C extends B {
  * abstract e il metodo m2 sarebbe appartenete alla classe C
  *2)Non avrebbe funzionato dato che non può essere istanziata e inoltre Non esiste un metodo m2 in A
  *
- * 3)Il programma funziona e stampa B.m1 perchè stiamo passando il metodo nella classe C dove stampa il risultato
+ * 3)Il programma funziona e stampa C.m1 e B.m1 perchè stiamo passando il metodo nella classe C dove stampa il risultato
  *
- * 4) Il programma non funziona e da un errore dato che in A non esiste il metodo m1
+ * 4) Il programma non funziona e da un errore dato che in A non esiste il metodo m2
  * */
 
 
